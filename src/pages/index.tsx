@@ -497,7 +497,11 @@ export default function HomePage() {
               <p className='text-sm font-semibold uppercase tracking-[0.14em] text-white/70'>Service Area</p>
               <ul className='mt-2 space-y-1 text-sm text-white'>
                 {siteConfig.serviceAreas.map((area) => (
-                  <li key={area}>{area}</li>
+                  <li key={area.href}>
+                    <a href={area.href} className='hover:text-white/80'>
+                      {area.label}
+                    </a>
+                  </li>
                 ))}
               </ul>
             </div>
