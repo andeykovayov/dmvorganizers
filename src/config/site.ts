@@ -8,7 +8,7 @@ export const siteConfig = {
   phoneHref: 'tel:+12022566678',
   email: 'dmvorganizers@gmail.com',
   emailHref: 'mailto:dmvorganizers@gmail.com',
-  domain: 'https://dmvorganizers.com',
+  domain: 'https://www.dmvorganizers.com',
   title: 'DMV Organizers | Home Organization & Decluttering Services',
   description:
     'DMV Organizers helps homeowners across Northern Virginia, Washington DC, and Montgomery County (MD) declutter and organize their homes.',

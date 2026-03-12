@@ -33,7 +33,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](https://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Production Build
 
@@ -50,13 +50,22 @@ For this project, build output is generated in `out/`.
 1. Push repository to GitHub/GitLab.
 2. In Cloudflare Dashboard, create a **Pages** project and connect the repository.
 3. Build settings:
-   - Framework preset: `Next.js`
-   - Build command: `npm run build`
+   - Framework preset: `None`
+   - Build command: `npx next build`
    - Build output directory: `out`
-4. Add environment variables in Pages project settings:
+   - Root directory: `/` (repo root)
+4. Important: do **not** use OpenNext custom commands such as `npx opennextjs-cloudflare build` for this project.
+   This site is configured as static export and should be deployed as static Pages output.
+5. Add environment variables in Pages project settings:
    - `NEXT_PUBLIC_BOOKING_URL`
    - `NEXT_PUBLIC_CONTACT_FORM_ENDPOINT`
-5. Deploy.
+6. Deploy.
+
+### Why this works
+
+- `next.config.js` sets `output: 'export'`, so `next build` creates static assets in `out/`.
+- The site does not use server-only Next.js features (SSR, API routes, middleware, or server actions).
+- Cloudflare Pages should serve the `out/` directory directly.
 
 ### Option B: Wrangler CLI direct deploy
 
@@ -71,19 +80,19 @@ npx wrangler login
 Then deploy static output:
 
 ```bash
-npm run build
-npx wrangler pages deploy out --project-name dmv-organizers
+npm run deploy:pages
 ```
 
-## Attach Custom Domain (`dmvorganizers.com`)
+## Custom Domains
 
-1. Open Cloudflare Pages project settings.
-2. Go to **Custom domains**.
-3. Add:
-   - `dmvorganizers.com`
-   - optionally `www.dmvorganizers.com`
-4. Confirm DNS records in Cloudflare.
-5. Wait for SSL provisioning.
+- Primary domain: `www.dmvorganizers.com`
+- Apex domain: `dmvorganizers.com` -> redirect to `https://www.dmvorganizers.com` at Cloudflare domain/rules level
+
+In Cloudflare Pages -> Custom domains:
+
+1. Add `www.dmvorganizers.com` as the production domain.
+2. Add `dmvorganizers.com`.
+3. Create a domain-level forwarding/redirect rule from apex to `https://www.dmvorganizers.com`.
 
 ## Editable Content Files
 

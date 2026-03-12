@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "npx next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy:pages": "npx wrangler pages deploy out --project-name dmv-organizers"
+    "deploy:pages": "npm run build:pages && npx wrangler pages deploy out --project-name dmv-organizers"
   },
   "dependencies": {
     "next": "16.1.6",
