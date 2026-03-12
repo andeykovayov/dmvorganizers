@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#ebe4dc"/>
+  <rect x="100" y="120" width="1000" height="660" rx="30" fill="#f9f7f3"/>
+  <rect x="160" y="200" width="880" height="120" rx="18" fill="#d2c6b8"/>
+  <rect x="160" y="350" width="880" height="120" rx="18" fill="#d7cabb"/>
+  <rect x="160" y="500" width="880" height="120" rx="18" fill="#ddcfbf"/>
+  <text x="600" y="830" text-anchor="middle" font-family="Arial, sans-serif" font-size="46" fill="#554f48">Before</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#f0e8e1"/>
+  <rect x="100" y="140" width="1000" height="620" rx="30" fill="#fff"/>
+  <circle cx="280" cy="620" r="70" fill="#e3c8c3"/>
+  <circle cx="460" cy="580" r="80" fill="#d8b9c8"/>
+  <circle cx="650" cy="640" r="75" fill="#dec9b8"/>
+  <circle cx="840" cy="610" r="85" fill="#d2c0d8"/>
+  <text x="600" y="830" text-anchor="middle" font-family="Arial, sans-serif" font-size="46" fill="#554f48">Before</text>
+</svg>

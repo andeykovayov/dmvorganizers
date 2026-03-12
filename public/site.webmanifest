@@ -1,0 +1,28 @@
+{
+  "name": "DMV Organizers",
+  "short_name": "DMV Organizers",
+  "description": "Home organizing and decluttering services for Northern Virginia, Washington DC, and Montgomery County (MD).",
+  "start_url": "https://www.dmvorganizers.com/",
+  "scope": "https://www.dmvorganizers.com/",
+  "display": "standalone",
+  "theme_color": "#E8E2D7",
+  "background_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

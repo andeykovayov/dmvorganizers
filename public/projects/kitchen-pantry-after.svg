@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" fill="#e6f1ef"/>
+  <rect x="100" y="120" width="1000" height="660" rx="30" fill="#ffffff"/>
+  <rect x="160" y="200" width="880" height="110" rx="18" fill="#cde5e1"/>
+  <rect x="160" y="340" width="880" height="110" rx="18" fill="#b5d9d3"/>
+  <rect x="160" y="480" width="880" height="110" rx="18" fill="#9fcfc7"/>
+  <text x="600" y="830" text-anchor="middle" font-family="Arial, sans-serif" font-size="46" fill="#2e7c74">After</text>
+</svg>
