@@ -35,7 +35,7 @@ export type PricingTier = {
     label: string
     value: string
   }>
-  ctaTarget: 'booking' | 'contact'
+  ctaTarget: 'booking' | 'contact' | 'phone'
   ctaLabel: string
 }
 

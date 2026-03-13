@@ -6,8 +6,8 @@ export const siteConfig = {
   owner: 'Nadiia',
   phoneDisplay: '(202) 256 6678',
   phoneHref: 'tel:+12022566678',
-  email: 'dmvorganizers@gmail.com',
-  emailHref: 'mailto:dmvorganizers@gmail.com',
+  email: 'dmvorganizersllc@gmail.com',
+  emailHref: 'mailto:dmvorganizersllc@gmail.com',
   domain: 'https://www.dmvorganizers.com',
   title: 'DMV Organizers | Home Organization & Decluttering Services',
   description:
@@ -31,7 +31,7 @@ export const siteConfig = {
 export const trustItems: TrustItem[] = [
   {
     icon: 'map-pin',
-    text: 'Local DMV business serving Northern Virginia, DC, and Montgomery County (MD)',
+    text: 'Local DMV business',
   },
   {
     icon: 'sparkles',

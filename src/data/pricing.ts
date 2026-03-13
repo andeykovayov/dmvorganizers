@@ -4,16 +4,12 @@ export const pricingTiers: PricingTier[] = [
   {
     name: 'Initial Consultation',
     summary:
-      'Start with a consultation to discuss your space, priorities, and organizing goals. This visit is typically around 1 hour and helps us understand your needs and recommend the best approach.',
+      'Start with a free consultation to briefly discuss your space, priorities, and organizing goals. This short call helps us understand your needs and explain how our organizing sessions work.',
     details:
-      'We can come to you in person, and if arranged in advance, the consultation can also continue into a full organizing session the same day.',
-    highlights: [
-      'Flexible appointment',
-      'Typically 1 hour',
-      'Can extend into a full session',
-    ],
-    ctaTarget: 'contact',
-    ctaLabel: 'Request Consultation',
+      'The consultation can be done by phone, Zoom, or a quick video call and typically takes about 10-15 minutes. It is a short introduction call and not an organizing session.',
+    highlights: ['Free consultation', '10-15 minute call', 'Phone, Zoom, or video call'],
+    ctaTarget: 'phone',
+    ctaLabel: 'Call Us',
   },
   {
     name: 'Standard Session',
@@ -37,9 +33,9 @@ export const pricingTiers: PricingTier[] = [
       'Client-defined timeline',
     ],
     examples: [
-      { label: '12 hours', value: '$720' },
-      { label: '20 hours', value: '$1,200' },
-      { label: '32 hours', value: '$1,920' },
+      { label: '8 hours', value: '$480' },
+      { label: '16 hours', value: '$920' },
+      { label: '32 hours', value: '$1,800' },
     ],
     ctaTarget: 'contact',
     ctaLabel: 'Request Package Plan',

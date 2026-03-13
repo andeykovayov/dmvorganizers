@@ -52,14 +52,22 @@ export default function HomePage() {
               <span className='truncate font-serif text-xl font-semibold'>{siteConfig.businessName}</span>
             </a>
 
-            <a
-              href={bookingEnabled ? bookingUrl : '#booking'}
-              target={bookingEnabled ? '_blank' : undefined}
-              rel={bookingEnabled ? 'noreferrer' : undefined}
-              className='inline-flex shrink-0 items-center justify-center rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-md'
-            >
-              Book Appointment
-            </a>
+            <div className='flex shrink-0 items-center gap-2'>
+              <a
+                href={bookingEnabled ? bookingUrl : '#booking'}
+                target={bookingEnabled ? '_blank' : undefined}
+                rel={bookingEnabled ? 'noreferrer' : undefined}
+                className='inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-md'
+              >
+                Book Appointment
+              </a>
+              <a
+                href={siteConfig.phoneHref}
+                className='inline-flex items-center justify-center rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:border-accent hover:text-accent'
+              >
+                Call now: {siteConfig.phoneDisplay}
+              </a>
+            </div>
           </div>
 
           <nav className='border-t border-line/60'>
@@ -309,20 +317,28 @@ export default function HomePage() {
                     <div className='mt-auto pt-3'>
                       <a
                       href={
-                        tier.ctaTarget === 'contact'
+                        tier.ctaTarget === 'phone'
+                          ? siteConfig.phoneHref
+                          : tier.ctaTarget === 'contact'
                           ? '#contact'
                           : bookingEnabled
                             ? bookingUrl
                             : '#booking'
                         }
                         target={
-                          tier.ctaTarget === 'contact'
+                          tier.ctaTarget === 'contact' || tier.ctaTarget === 'phone'
                             ? undefined
-                            : bookingEnabled
+                          : bookingEnabled
                               ? '_blank'
                               : undefined
                         }
-                        rel={tier.ctaTarget === 'contact' ? undefined : bookingEnabled ? 'noreferrer' : undefined}
+                        rel={
+                          tier.ctaTarget === 'contact' || tier.ctaTarget === 'phone'
+                            ? undefined
+                            : bookingEnabled
+                              ? 'noreferrer'
+                              : undefined
+                        }
                         className='inline-flex min-w-[11.5rem] items-center justify-center self-start rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-md'
                       >
                         {tier.ctaLabel}
