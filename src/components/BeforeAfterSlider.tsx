@@ -62,20 +62,23 @@ export function BeforeAfterSlider({
         className='relative aspect-[5/4] overflow-hidden rounded-3xl border border-line bg-sand/20 shadow-card touch-none select-none'
       >
         <img
-          src={beforeImage}
-          alt={beforeAlt}
+          src={afterImage}
+          alt={afterAlt}
           loading='lazy'
           className='absolute inset-0 h-full w-full object-cover'
         />
         <div
-          className='absolute inset-y-0 left-0 overflow-hidden border-r-2 border-white/70'
-          style={{ width: `${position}%` }}
+          className='absolute inset-0 overflow-hidden'
+          style={{
+            clipPath: `polygon(0 0, ${position}% 0, ${position}% 100%, 0 100%)`,
+            WebkitClipPath: `polygon(0 0, ${position}% 0, ${position}% 100%, 0 100%)`,
+          }}
         >
           <img
-            src={afterImage}
-            alt={afterAlt}
+            src={beforeImage}
+            alt={beforeAlt}
             loading='lazy'
-            className='h-full w-full min-w-full object-cover'
+            className='absolute inset-0 h-full w-full object-cover'
           />
         </div>
 

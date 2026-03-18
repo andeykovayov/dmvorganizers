@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from 'react'
+import { FormEvent, useEffect, useMemo, useState } from 'react'
 
 type ContactFormProps = {
   endpoint: string
@@ -24,6 +24,19 @@ export function ContactForm({ endpoint }: ContactFormProps) {
   const [feedback, setFeedback] = useState('')
 
   const endpointConfigured = useMemo(() => Boolean(endpoint?.trim()), [endpoint])
+
+  useEffect(() => {
+    if (status !== 'success' || !feedback) {
+      return
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setFeedback('')
+      setStatus('idle')
+    }, 5000)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [status, feedback])
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
