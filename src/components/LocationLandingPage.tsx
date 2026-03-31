@@ -30,7 +30,7 @@ export function LocationLandingPage({
   communities,
 }: LocationLandingPageProps) {
   const canonical = `${siteConfig.domain}${path}`
-  const bookingHref = bookingEnabled ? bookingUrl : '/#booking'
+  const bookingHref = bookingEnabled ? bookingUrl : '/#contact'
 
   return (
     <>
@@ -217,6 +217,23 @@ export function LocationLandingPage({
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+
+          <div className='border-t border-white/15'>
+            <div className='mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4 text-xs text-white/65 sm:px-6'>
+              <p>(c) {new Date().getFullYear()} {siteConfig.legalName}. All rights reserved.</p>
+              <div className='flex items-center gap-4'>
+                <a href='/privacy-policy' className='hover:text-white'>
+                  Privacy Policy
+                </a>
+                <a href='/terms-and-conditions' className='hover:text-white'>
+                  Terms &amp; Conditions
+                </a>
+                <a href={siteConfig.domain} className='hover:text-white'>
+                  {siteConfig.domain}
+                </a>
+              </div>
             </div>
           </div>
         </footer>

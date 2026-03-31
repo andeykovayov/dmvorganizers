@@ -5,17 +5,39 @@ type ContactFormProps = {
 }
 
 type FormState = {
-  name: string
+  firstName: string
+  lastName: string
   email: string
+  phone: string
   message: string
   company: string
 }
 
 const initialState: FormState = {
-  name: '',
+  firstName: '',
+  lastName: '',
   email: '',
+  phone: '',
   message: '',
   company: '',
+}
+
+function formatPhoneNumber(value: string) {
+  const digits = value.replace(/\D/g, '').slice(0, 10)
+
+  if (digits.length === 0) {
+    return ''
+  }
+
+  if (digits.length <= 3) {
+    return `(${digits}`
+  }
+
+  if (digits.length <= 6) {
+    return `(${digits.slice(0, 3)}) ${digits.slice(3)}`
+  }
+
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`
 }
 
 export function ContactForm({ endpoint }: ContactFormProps) {
@@ -41,9 +63,9 @@ export function ContactForm({ endpoint }: ContactFormProps) {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+    if (!form.firstName.trim() || !form.email.trim() || !form.message.trim()) {
       setStatus('error')
-      setFeedback('Please fill in your name, email, and message.')
+      setFeedback('Please fill in your first name, email, and message.')
       return
     }
 
@@ -51,6 +73,12 @@ export function ContactForm({ endpoint }: ContactFormProps) {
     if (!emailPattern.test(form.email)) {
       setStatus('error')
       setFeedback('Please enter a valid email address.')
+      return
+    }
+
+    if (form.phone.trim() && !/^\(\d{3}\) \d{3}-\d{4}$/.test(form.phone)) {
+      setStatus('error')
+      setFeedback('Please enter phone number in this format: (555) 666-7777.')
       return
     }
 
@@ -72,8 +100,11 @@ export function ContactForm({ endpoint }: ContactFormProps) {
       setFeedback('')
 
       const payload = new FormData()
-      payload.append('name', form.name)
+      payload.append('first_name', form.firstName)
+      payload.append('last_name', form.lastName)
+      payload.append('name', `${form.firstName} ${form.lastName}`.trim())
       payload.append('email', form.email)
+      payload.append('phone', form.phone)
       payload.append('message', form.message)
       payload.append('company', form.company)
 
@@ -107,19 +138,36 @@ export function ContactForm({ endpoint }: ContactFormProps) {
     >
       <div className='mb-4 grid gap-4 sm:grid-cols-2'>
         <label className='space-y-2 text-sm font-medium text-ink'>
-          Name
+          <span>
+            First name <span className='text-red-500'>*</span>
+          </span>
           <input
             type='text'
-            name='name'
-            value={form.name}
-            onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
+            name='first_name'
+            value={form.firstName}
+            onChange={(event) => setForm((prev) => ({ ...prev, firstName: event.target.value }))}
             className='w-full rounded-xl border border-line bg-white px-3 py-2 text-base text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20'
             required
           />
         </label>
 
         <label className='space-y-2 text-sm font-medium text-ink'>
-          Email
+          Last name
+          <input
+            type='text'
+            name='last_name'
+            value={form.lastName}
+            onChange={(event) => setForm((prev) => ({ ...prev, lastName: event.target.value }))}
+            className='w-full rounded-xl border border-line bg-white px-3 py-2 text-base text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20'
+          />
+        </label>
+      </div>
+
+      <div className='mb-4 grid gap-4 sm:grid-cols-2'>
+        <label className='space-y-2 text-sm font-medium text-ink'>
+          <span>
+            Email <span className='text-red-500'>*</span>
+          </span>
           <input
             type='email'
             name='email'
@@ -129,10 +177,26 @@ export function ContactForm({ endpoint }: ContactFormProps) {
             required
           />
         </label>
+
+        <label className='space-y-2 text-sm font-medium text-ink'>
+          Phone
+          <input
+            type='tel'
+            name='phone'
+            value={form.phone}
+            onChange={(event) =>
+              setForm((prev) => ({ ...prev, phone: formatPhoneNumber(event.target.value) }))
+            }
+            className='w-full rounded-xl border border-line bg-white px-3 py-2 text-base text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20'
+            autoComplete='tel'
+            inputMode='tel'
+            maxLength={14}
+          />
+        </label>
       </div>
 
       <label className='space-y-2 text-sm font-medium text-ink'>
-        Message
+        Briefly, tell us the reason for contacting us
         <textarea
           name='message'
           value={form.message}

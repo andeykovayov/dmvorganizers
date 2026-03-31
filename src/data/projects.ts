@@ -20,8 +20,8 @@ export const projects: ProjectItem[] = [
   {
     title: 'Garage Organization Project',
     description: 'Organized zones for tools, seasonal items, and overflow storage.',
-    beforeImage: '/projects/garage-before.svg',
-    afterImage: '/projects/garage-after.svg',
+    beforeImage: '/projects/garage-before.jpg',
+    afterImage: '/projects/garage-after.jpg',
     beforeAlt: 'Garage before organizing with stacked unsorted boxes',
     afterAlt: 'Garage after organizing with neat category zones',
   },

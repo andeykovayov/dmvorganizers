@@ -9,11 +9,7 @@ import { projects } from '@/data/projects'
 import { services } from '@/data/services'
 import { testimonials } from '@/data/testimonials'
 
-const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL ?? ''
 const contactEndpoint = process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT ?? ''
-
-const bookingEnabled = bookingUrl.trim().length > 0
-const canEmbedBooking = bookingEnabled && bookingUrl.includes('calendar.google.com')
 
 const processSteps = [
   'Step 1 - We take a deep breath and face the clutter together.',
@@ -54,12 +50,10 @@ export default function HomePage() {
 
             <div className='flex shrink-0 items-center gap-2'>
               <a
-                href={bookingEnabled ? bookingUrl : '#booking'}
-                target={bookingEnabled ? '_blank' : undefined}
-                rel={bookingEnabled ? 'noreferrer' : undefined}
+                href='#contact'
                 className='inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-md'
               >
-                Book Appointment
+                Send a Message
               </a>
               <a
                 href={siteConfig.phoneHref}
@@ -105,22 +99,6 @@ export default function HomePage() {
                   Montgomery County (MD) transform cluttered spaces into organized, functional homes.
                 </p>
 
-                <div className='flex flex-wrap items-center gap-3'>
-                  <a
-                    href={bookingEnabled ? bookingUrl : '#booking'}
-                    target={bookingEnabled ? '_blank' : undefined}
-                    rel={bookingEnabled ? 'noreferrer' : undefined}
-                    className='inline-flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-md'
-                  >
-                    Book Appointment
-                  </a>
-                  <a
-                    href={siteConfig.phoneHref}
-                    className='inline-flex items-center justify-center rounded-full border border-line bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:border-accent hover:text-accent'
-                  >
-                    Call now: {siteConfig.phoneDisplay}
-                  </a>
-                </div>
               </div>
 
               <div className='grid grid-cols-2 gap-4 lg:gap-5'>
@@ -236,12 +214,10 @@ export default function HomePage() {
                     <h3 className='mb-2 text-lg font-semibold'>{service.title}</h3>
                     <p className='mb-5 text-sm leading-relaxed text-muted'>{service.description}</p>
                     <a
-                      href={bookingEnabled ? bookingUrl : '#booking'}
-                      target={bookingEnabled ? '_blank' : undefined}
-                      rel={bookingEnabled ? 'noreferrer' : undefined}
+                      href='#contact'
                       className='mt-auto inline-flex items-center justify-center rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink transition hover:border-accent hover:text-accent'
                     >
-                      Book Appointment
+                      Send a Message
                     </a>
                   </article>
                 ))}
@@ -263,7 +239,7 @@ export default function HomePage() {
                 <div className='mt-2 grid gap-3 sm:max-w-xl sm:grid-cols-2'>
                   <div className='rounded-2xl border border-line bg-white px-4 py-3 shadow-card'>
                     <p className='text-[11px] font-semibold uppercase tracking-[0.12em] text-muted'>Flat rate</p>
-                    <p className='mt-1 font-serif text-2xl text-accent'>$60/hour</p>
+                    <p className='mt-1 font-serif text-2xl text-accent'>$65/hour</p>
                   </div>
                   <div className='rounded-2xl border border-line bg-white px-4 py-3 shadow-card'>
                     <p className='text-[11px] font-semibold uppercase tracking-[0.12em] text-muted'>
@@ -316,29 +292,7 @@ export default function HomePage() {
 
                     <div className='mt-auto pt-3'>
                       <a
-                      href={
-                        tier.ctaTarget === 'phone'
-                          ? siteConfig.phoneHref
-                          : tier.ctaTarget === 'contact'
-                          ? '#contact'
-                          : bookingEnabled
-                            ? bookingUrl
-                            : '#booking'
-                        }
-                        target={
-                          tier.ctaTarget === 'contact' || tier.ctaTarget === 'phone'
-                            ? undefined
-                          : bookingEnabled
-                              ? '_blank'
-                              : undefined
-                        }
-                        rel={
-                          tier.ctaTarget === 'contact' || tier.ctaTarget === 'phone'
-                            ? undefined
-                            : bookingEnabled
-                              ? 'noreferrer'
-                              : undefined
-                        }
+                        href={siteConfig.phoneHref}
                         className='inline-flex min-w-[11.5rem] items-center justify-center self-start rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-md'
                       >
                         {tier.ctaLabel}
@@ -442,50 +396,6 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section id='booking' className='border-b border-line/70'>
-            <div className='mx-auto w-full max-w-6xl px-4 py-16 sm:px-6'>
-              <div className='mb-6 space-y-3'>
-                <p className='text-sm font-semibold uppercase tracking-[0.16em] text-muted'>Booking</p>
-                <h2 className='font-serif text-3xl sm:text-4xl'>Book Your Session</h2>
-                <p className='max-w-2xl text-sm leading-relaxed text-muted'>
-                  Use our online calendar to book organizing sessions at a time that works for your
-                  schedule.
-                </p>
-                <p className='max-w-2xl text-sm leading-relaxed text-muted'>
-                  For consultations, please call or send a message through the contact form.
-                </p>
-              </div>
-
-              {bookingEnabled ? (
-                <div className='space-y-5'>
-                  <a
-                    href={bookingUrl}
-                    target='_blank'
-                    rel='noreferrer'
-                    className='inline-flex rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-md'
-                  >
-                    Book Appointment
-                  </a>
-
-                  {canEmbedBooking && (
-                    <div className='overflow-hidden rounded-3xl border border-line bg-white shadow-card'>
-                      <iframe
-                        title='Google Calendar Appointment Scheduling'
-                        src={bookingUrl}
-                        loading='lazy'
-                        className='h-[680px] w-full'
-                      />
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className='rounded-3xl border border-dashed border-line bg-surface p-5 text-sm text-muted'>
-                  Booking URL not configured. Set <code>NEXT_PUBLIC_BOOKING_URL</code> to your Google
-                  Calendar appointment scheduling link.
-                </div>
-              )}
-            </div>
-          </section>
         </main>
 
         <footer className='bg-ink text-white'>
@@ -526,9 +436,17 @@ export default function HomePage() {
           <div className='border-t border-white/15'>
             <div className='mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4 text-xs text-white/65 sm:px-6'>
               <p>(c) {new Date().getFullYear()} {siteConfig.legalName}. All rights reserved.</p>
-              <a href={siteConfig.domain} className='hover:text-white'>
-                {siteConfig.domain}
-              </a>
+              <div className='flex items-center gap-4'>
+                <a href='/privacy-policy' className='hover:text-white'>
+                  Privacy Policy
+                </a>
+                <a href='/terms-and-conditions' className='hover:text-white'>
+                  Terms &amp; Conditions
+                </a>
+                <a href={siteConfig.domain} className='hover:text-white'>
+                  {siteConfig.domain}
+                </a>
+              </div>
             </div>
           </div>
         </footer>

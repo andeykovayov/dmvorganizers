@@ -17,7 +17,7 @@ export const pricingTiers: PricingTier[] = [
       'Our standard organizing sessions are scheduled in advance and designed for focused, hands-on progress in your space.',
     details:
       'Sessions are booked with a 4-hour minimum and can be scheduled on their own or as part of a package.',
-    highlights: ['$60/hour', '4-hour minimum', 'Scheduled in advance'],
+    highlights: ['$65/hour', '4-hour minimum', 'Scheduled in advance'],
     ctaTarget: 'booking',
     ctaLabel: 'Book Session',
   },
@@ -28,14 +28,14 @@ export const pricingTiers: PricingTier[] = [
     details:
       'This is a flexible option for multi-room projects, phased organizing, or continued support over time.',
     highlights: [
-      '$60/hour',
+      '$65/hour',
       'Flexible multi-session scheduling',
       'Client-defined timeline',
     ],
     examples: [
-      { label: '8 hours', value: '$480' },
-      { label: '16 hours', value: '$920' },
-      { label: '32 hours', value: '$1,800' },
+      { label: '8 hours', value: '$520' },
+      { label: '16 hours', value: '$1,000' },
+      { label: '32 hours', value: '$1,960' },
     ],
     ctaTarget: 'contact',
     ctaLabel: 'Request Package Plan',
