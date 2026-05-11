@@ -22,15 +22,15 @@ export default function HomeOrganizingWashingtonDcPage() {
       ]}
       communitiesTitle='Washington DC neighborhoods we serve include:'
       communities={[
-        'Capitol Hill',
-        'Dupont Circle',
-        'Logan Circle',
-        'Georgetown',
-        'Adams Morgan',
-        'Brookland',
-        'Tenleytown',
-        'Upper Northwest',
-        'and surrounding neighborhoods',
+        { label: 'Capitol Hill', href: '/home-organizing-capitol-hill-dc' },
+        { label: 'Dupont Circle', href: '/home-organizing-dupont-circle-dc' },
+        { label: 'Logan Circle', href: '/home-organizing-logan-circle-dc' },
+        { label: 'Georgetown', href: '/home-organizing-georgetown-dc' },
+        { label: 'Adams Morgan', href: '/home-organizing-adams-morgan-dc' },
+        { label: 'Brookland', href: '/home-organizing-brookland-dc' },
+        { label: 'Tenleytown', href: '/home-organizing-tenleytown-dc' },
+        { label: 'Upper Northwest', href: '/home-organizing-upper-northwest-dc' },
+        { label: 'and surrounding neighborhoods' },
       ]}
     />
   )

@@ -22,14 +22,14 @@ export default function HomeOrganizingMontgomeryCountyMdPage() {
       ]}
       communitiesTitle='Montgomery County Communities We Serve'
       communities={[
-        'Bethesda',
-        'Rockville',
-        'Silver Spring',
-        'Gaithersburg',
-        'Potomac',
-        'Germantown',
-        'Clarksburg',
-        'Surrounding areas',
+        { label: 'Bethesda', href: '/home-organizing-bethesda-md' },
+        { label: 'Rockville', href: '/home-organizing-rockville-md' },
+        { label: 'Silver Spring', href: '/home-organizing-silver-spring-md' },
+        { label: 'Gaithersburg', href: '/home-organizing-gaithersburg-md' },
+        { label: 'Potomac', href: '/home-organizing-potomac-md' },
+        { label: 'Germantown', href: '/home-organizing-germantown-md' },
+        { label: 'Clarksburg', href: '/home-organizing-clarksburg-md' },
+        { label: 'Surrounding areas' },
       ]}
     />
   )

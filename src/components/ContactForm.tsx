@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useMemo, useState } from 'react'
+import { trackEvent } from '@/lib/analytics'
 
 type ContactFormProps = {
   endpoint: string
@@ -119,6 +120,15 @@ export function ContactForm({ endpoint }: ContactFormProps) {
       if (!response.ok) {
         throw new Error('Message submission failed')
       }
+
+      trackEvent('generate_lead', {
+        form_id: 'contact-form',
+        lead_type: 'contact_form',
+        page_path: window.location.pathname,
+      })
+      trackEvent('conversion', {
+        send_to: 'AW-18012335118/uEtPCPekspwcEI7Y-YxD',
+      })
 
       setStatus('success')
       setFeedback('Thanks for reaching out. We will get back to you soon.')

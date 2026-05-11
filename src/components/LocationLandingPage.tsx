@@ -11,7 +11,42 @@ type LocationLandingPageProps = {
   whoWeHelp: string[]
   whyChoose: string[]
   communitiesTitle: string
+  communities: Array<{
+    label: string
+    href?: string
+  }>
+  bottomNoteHtml?: string
+}
+
+type LocationLandingPagePropsLegacy = {
+  path: string
+  metaTitle: string
+  metaDescription: string
+  h1: string
+  intro: string
+  servicesOverview: string
+  whoWeHelp: string[]
+  whyChoose: string[]
+  communitiesTitle: string
   communities: string[]
+}
+
+type NormalizedLocationLandingPageProps =
+  | LocationLandingPageProps
+  | (LocationLandingPagePropsLegacy & { bottomNoteHtml?: string })
+
+function normalizeCommunities(
+  communities: NormalizedLocationLandingPageProps['communities'],
+): LocationLandingPageProps['communities'] {
+  if (communities.length === 0) {
+    return []
+  }
+
+  if (typeof communities[0] === 'string') {
+    return (communities as string[]).map((label) => ({ label }))
+  }
+
+  return communities as LocationLandingPageProps['communities']
 }
 
 const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL ?? ''
@@ -28,9 +63,11 @@ export function LocationLandingPage({
   whyChoose,
   communitiesTitle,
   communities,
-}: LocationLandingPageProps) {
+  bottomNoteHtml,
+}: NormalizedLocationLandingPageProps) {
   const canonical = `${siteConfig.domain}${path}`
   const bookingHref = bookingEnabled ? bookingUrl : '/#contact'
+  const normalizedCommunities = normalizeCommunities(communities)
 
   return (
     <>
@@ -146,8 +183,16 @@ export function LocationLandingPage({
               <article className='rounded-3xl border border-line bg-white p-6 shadow-card'>
                 <h2 className='font-serif text-2xl'>{communitiesTitle}</h2>
                 <ul className='mt-3 grid gap-2 text-sm leading-relaxed text-muted sm:grid-cols-2 sm:text-base'>
-                  {communities.map((community) => (
-                    <li key={community}>- {community}</li>
+                  {normalizedCommunities.map((community) => (
+                    <li key={community.label}>
+                      {community.href ? (
+                        <a href={community.href} className='hover:text-accent'>
+                          - {community.label}
+                        </a>
+                      ) : (
+                        <>- {community.label}</>
+                      )}
+                    </li>
                   ))}
                 </ul>
               </article>
@@ -183,6 +228,16 @@ export function LocationLandingPage({
               </div>
             </div>
           </section>
+
+          {bottomNoteHtml && (
+            <section className='border-b border-line/70 bg-white/70' aria-label='Additional listing details'>
+              <div className='mx-auto w-full max-w-6xl px-4 py-8 sm:px-6'>
+                <div className='rounded-2xl border border-line/80 bg-surface px-4 py-3 text-xs leading-relaxed text-muted shadow-card [&_a]:font-medium [&_a]:text-ink [&_a]:underline-offset-2 hover:[&_a]:text-accent [&_a]:underline'>
+                  <div dangerouslySetInnerHTML={{ __html: bottomNoteHtml }} />
+                </div>
+              </div>
+            </section>
+          )}
         </main>
 
         <footer className='bg-ink text-white'>
